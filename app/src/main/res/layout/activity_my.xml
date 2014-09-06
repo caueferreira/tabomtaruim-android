@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        style="@style/Title"
+        android:id="@+id/title"
+        android:text="Tá bom? Tá ruim? - CPTM"/>
+
+    <Button
+        android:layout_below="@+id/title"
+        android:id="@+id/ruby7"
+        android:onClick="chooseLine"
+        style="@style/Ruby7" />
+
+    <Button
+        android:layout_below="@+id/title"
+        android:id="@+id/diamond8"
+        android:layout_toRightOf="@+id/ruby7"
+        android:onClick="chooseLine"
+        style="@style/Diamond8" />
+
+    <Button
+        android:layout_below="@+id/title"
+        android:id="@+id/emerald9"
+        android:layout_toRightOf="@+id/diamond8"
+        android:onClick="chooseLine"
+        style="@style/Emerald9" />
+
+    <Button
+        android:layout_below="@+id/ruby7"
+        android:id="@+id/turquoise10"
+        android:onClick="chooseLine"
+        style="@style/Turquoise10" />
+
+    <Button
+        android:layout_below="@+id/emerald9"
+        android:id="@+id/coral11"
+        android:layout_toRightOf="@+id/turquoise10"
+        android:onClick="chooseLine"
+        style="@style/Coral11" />
+
+    <Button
+        android:layout_below="@+id/diamond8"
+        android:id="@+id/sapphire12"
+        android:layout_toRightOf="@+id/coral11"
+        android:onClick="chooseLine"
+        style="@style/Sapphire12" />
+
+    <TextView
+        style="@style/Title"
+        android:id="@+id/title2"
+        android:text="Tá bom? Tá ruim? - METRO"
+        android:layout_below="@+id/turquoise10"/>
+
+    <Button
+        android:layout_below="@+id/title2"
+        android:id="@+id/blue1"
+        android:onClick="chooseLine"
+        style="@style/Blue1" />
+
+    <Button
+        android:layout_below="@+id/title2"
+        android:id="@+id/green2"
+        android:onClick="chooseLine"
+        android:layout_toRightOf="@+id/blue1"
+        style="@style/Green2" />
+
+    <Button
+        android:layout_below="@+id/title2"
+        android:id="@+id/red3"
+        android:onClick="chooseLine"
+        android:layout_toRightOf="@+id/green2"
+        style="@style/Red3" />
+
+    <Button
+        android:layout_below="@+id/blue1"
+        android:id="@+id/yellow4"
+        android:onClick="chooseLine"
+        style="@style/Yellow4" />
+
+    <Button
+        android:layout_below="@+id/green2"
+        android:id="@+id/lilac5"
+        android:onClick="chooseLine"
+        android:layout_toRightOf="@+id/yellow4"
+        style="@style/Lilac5" />
+
+</RelativeLayout>
