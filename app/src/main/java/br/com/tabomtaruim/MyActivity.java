@@ -2,6 +2,7 @@ package br.com.tabomtaruim;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -350,14 +351,24 @@ public class MyActivity extends Activity {
         }
     }
 
-    private class ConnectToApi extends AsyncTask<GoodBad, Void, Void> {
+    private class ConnectToApi extends AsyncTask<GoodBad, Void, GoodBad>{
+
+            ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",
+            "Canalizando nuvens de caos...", true);
+
         @Override
-        protected Void doInBackground(GoodBad... goodBads) {
+        protected GoodBad doInBackground(GoodBad... goodBads) {
             //Yet to code
+            dialog.show();
             Log.i("GoodBad", goodBads[0].toString());
 
             Log.i("GoodBad resp",baseAPI.report(goodBads[0]).toString());
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(GoodBad result) {
+            dialog.cancel();
         }
     }
 }
