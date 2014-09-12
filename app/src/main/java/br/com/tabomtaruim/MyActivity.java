@@ -20,6 +20,7 @@ import java.util.Map;
 import br.com.tabomtaruim.communication.FeignClientBuilder;
 import br.com.tabomtaruim.communication.api.BaseAPI;
 import br.com.tabomtaruim.entity.GoodBad;
+import br.com.tabomtaruim.helper.LoadingMessageGenerator;
 
 
 public class MyActivity extends Activity {
@@ -354,7 +355,7 @@ public class MyActivity extends Activity {
     private class ConnectToApi extends AsyncTask<GoodBad, Void, GoodBad> {
 
         ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",
-                "Canalizando nuvens de caos...", true);
+                LoadingMessageGenerator.randomOne(), true);
 
 
         @Override
@@ -370,7 +371,7 @@ public class MyActivity extends Activity {
 
             new AlertDialog.Builder(MyActivity.this)
                     .setTitle("Good Bad")
-                    .setMessage(result.getLine()+ " is "+result.getStatus())
+                    .setMessage(result.getLine() + " is " + result.getStatus())
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
