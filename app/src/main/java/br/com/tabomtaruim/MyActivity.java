@@ -351,24 +351,33 @@ public class MyActivity extends Activity {
         }
     }
 
-    private class ConnectToApi extends AsyncTask<GoodBad, Void, GoodBad>{
+    private class ConnectToApi extends AsyncTask<GoodBad, Void, GoodBad> {
 
-            ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",
-            "Canalizando nuvens de caos...", true);
+        ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",
+                "Canalizando nuvens de caos...", true);
+
 
         @Override
         protected GoodBad doInBackground(GoodBad... goodBads) {
             //Yet to code
             dialog.show();
-            Log.i("GoodBad", goodBads[0].toString());
-
-            Log.i("GoodBad resp",baseAPI.report(goodBads[0]).toString());
-            return null;
+            return baseAPI.report(goodBads[0]);
         }
 
         @Override
         protected void onPostExecute(GoodBad result) {
             dialog.cancel();
+
+            new AlertDialog.Builder(MyActivity.this)
+                    .setTitle("Good Bad")
+                    .setMessage(result.getLine()+ " is "+result.getStatus())
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 }
