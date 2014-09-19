@@ -57,7 +57,6 @@
     <Button
         android:layout_below="@+id/title2"
         android:id="@+id/blue1"
-        android:onClick="chooseLine"
         style="@style/Blue1" />
 
     <Button

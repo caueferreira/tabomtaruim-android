@@ -13,5 +13,5 @@ public interface BaseAPI {
 
     @RequestLine("GET /good_bad/{line}")
     @Headers("line: {line}")
-    String checkLineStatus(@Named("line") final String line);
+    GoodBad checkLineStatus(@Named("line") final String line);
 }

@@ -1,4 +1,4 @@
-package br.com.tabomtaruim;
+package br.com.tabomtaruim.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,31 +7,38 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import br.com.tabomtaruim.R;
 import br.com.tabomtaruim.communication.FeignClientBuilder;
 import br.com.tabomtaruim.communication.api.BaseAPI;
 import br.com.tabomtaruim.entity.GoodBad;
 import br.com.tabomtaruim.helper.LoadingMessageGenerator;
 
 
-public class MyActivity extends Activity {
+public class MainFragment extends Fragment {
 
     private Map<Integer, String> favoriteLines = new LinkedHashMap<Integer, String>();
     private BaseAPI baseAPI;
 
+    private Button blue1, green2, red3, yellow4, lilac5, ruby7, diamond8, emerald9, turquoise10, coral11, sapphire12;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(
+                R.layout.main_activity, container, false);
 
         FeignClientBuilder feignClientBuilder = new FeignClientBuilder();
         feignClientBuilder.setUrl(FeignClientBuilder.TEST);
@@ -39,38 +46,105 @@ public class MyActivity extends Activity {
         Log.i("URL", feignClientBuilder.url);
 
         baseAPI = feignClientBuilder.getBaseApi(BaseAPI.class);
-    }
 
+        blue1 = (Button) rootView.findViewById(R.id.blue1);
+        green2 = (Button) rootView.findViewById(R.id.green2);
+        red3 = (Button) rootView.findViewById(R.id.red3);
+        yellow4 = (Button) rootView.findViewById(R.id.yellow4);
+        lilac5 = (Button) rootView.findViewById(R.id.lilac5);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
-    }
+        ruby7 = (Button) rootView.findViewById(R.id.ruby7);
+        diamond8 = (Button) rootView.findViewById(R.id.diamond8);
+        emerald9 = (Button) rootView.findViewById(R.id.emerald9);
+        turquoise10 = (Button) rootView.findViewById(R.id.turquoise10);
+        coral11 = (Button) rootView.findViewById(R.id.coral11);
+        sapphire12 = (Button) rootView.findViewById(R.id.sapphire12);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        blue1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        green2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        red3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        yellow4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        lilac5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        ruby7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        diamond8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        emerald9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        turquoise10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        coral11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+
+        sapphire12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseLine(view);
+            }
+        });
+        return rootView;
     }
 
 
     public void chooseLine(View v) {
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//
-//        StrictMode.setThreadPolicy(policy);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Tá bom? Tá ruim?");
 
-        TelephonyManager mngr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager mngr = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         final String imei = mngr.getDeviceId();
         switch (v.getId()) {
             case R.id.ruby7:
@@ -354,7 +428,7 @@ public class MyActivity extends Activity {
 
     private class ConnectToApi extends AsyncTask<GoodBad, Void, GoodBad> {
 
-        ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "",
+        ProgressDialog dialog = ProgressDialog.show(getActivity(), "",
                 LoadingMessageGenerator.randomOne(), true);
 
 
@@ -369,7 +443,7 @@ public class MyActivity extends Activity {
         protected void onPostExecute(GoodBad result) {
             dialog.cancel();
 
-            new AlertDialog.Builder(MyActivity.this)
+            new AlertDialog.Builder(getActivity())
                     .setTitle("Good Bad")
                     .setMessage(result.getLine() + " is " + result.getStatus())
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
