@@ -1,6 +1,7 @@
 package br.com.tabomtaruim;
 
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,11 +10,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import java.io.IOException;
+
+import br.com.hyperion.lib.Hyperion;
 import br.com.tabomtaruim.fragments.InformationFragment;
 import br.com.tabomtaruim.fragments.MainFragment;
 import br.com.tabomtaruim.helper.DepthPageTransformer;
 
 public class ScreenSlidePagerActivity extends FragmentActivity {
+
+    private final String HYPERION_KEY = "c8e1e6f8c0fa49bd8b55755c11fbbadc";
+
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -35,11 +42,19 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
+        try {
+            Hyperion.setUp(this, HYPERION_KEY);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setPageTransformer(true, new DepthPageTransformer());
         mPager.setAdapter(mPagerAdapter);
+
 
     }
 
