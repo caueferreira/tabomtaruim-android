@@ -59,7 +59,7 @@ public class InformationFragment extends Fragment {
         line11 = (TextView) rootView.findViewById(R.id.line11);
         line12 = (TextView) rootView.findViewById(R.id.line12);
 
-        new ConnectToApi().execute();
+        //new ConnectToApi().execute();
 
 
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.container);
