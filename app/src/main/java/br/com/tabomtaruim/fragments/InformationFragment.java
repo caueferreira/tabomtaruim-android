@@ -1,8 +1,6 @@
 package br.com.tabomtaruim.fragments;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -97,7 +95,6 @@ public class InformationFragment extends Fragment {
             goodBadList.add(baseAPI.checkLineStatus("cptm-10"));
             goodBadList.add(baseAPI.checkLineStatus("cptm-11"));
             goodBadList.add(baseAPI.checkLineStatus("cptm-12"));
-
 
             Log.i("GoodBad", goodBadList.toString());
             return goodBadList;
